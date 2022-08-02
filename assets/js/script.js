@@ -137,6 +137,7 @@ var createTaskEl = function(taskDataObj) {
   listItemEl.appendChild(taskActionsEl);
   taskDataObj.id=taskIdCounter;
 tasks.push(taskDataObj);
+saveTasks();
   tasksToDoEl.appendChild(listItemEl);
 
 
@@ -267,7 +268,7 @@ tasks[i],type=taskType;
 
   }
 }
-
+saveTasks();
   alert("Task Updated!");
 
 
@@ -347,7 +348,7 @@ var taskStatusChangeHandler = function(event) {
   var statusValue = event.target.value.toLowerCase();
 
 
-
+d
   if (statusValue === "to do") {
 
 
@@ -372,6 +373,7 @@ var taskStatusChangeHandler = function(event) {
       tasks[i].status===statusValue;
     }
   }
+  saveTasks();
 };
 
 var editTask = function(taskId) {
@@ -442,9 +444,12 @@ if(tasks[i].id !==parseInt(taskId)){
 
 }
 tasks=updatedTaskArr;
+saveTasks();
 
 };
-
+var saveTasks=function(){
+  localStorage.setItem("tasks",JSON.stringify(tasks));
+}
 // Create a new task
 
 
